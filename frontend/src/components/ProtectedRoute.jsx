@@ -1,5 +1,4 @@
 /**
- * components/ProtectedRoute.jsx
  * Redirects unauthenticated users to /login.
  */
 import { Navigate, Outlet } from "react-router-dom";

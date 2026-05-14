@@ -1,5 +1,4 @@
 /**
- * components/Layout.jsx
  * Top navigation bar + page shell. Shown on all authenticated pages.
  */
 import { Link, useNavigate } from "react-router-dom";
@@ -33,9 +32,9 @@ export function Layout({ children }) {
                 <span className="hidden text-xs text-muted-foreground sm:block">
                   {user.role === "admin" ? "Admin" : "Reviewer"}
                 </span>
-                <Badge variant={user.role === "admin" ? "default" : "secondary"}>
+                {/* <Badge variant={user.role === "admin" ? "default" : "secondary"}>
                   {user.role}
-                </Badge>
+                </Badge> */}
               </>
             )}
             <Button variant="ghost" size="sm" onClick={handleLogout} className="h-8 gap-1.5 text-xs">
@@ -46,7 +45,7 @@ export function Layout({ children }) {
         </div>
       </header>
 
-      {/* ── Page content ── */}
+      {/* Page content */}
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
         {children}
       </main>

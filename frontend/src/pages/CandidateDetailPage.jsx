@@ -1,5 +1,4 @@
 /**
- * pages/CandidateDetailPage.jsx
  *
  * RBAC rules enforced in this component:
  *  - internal_notes panel: rendered only for admin (DOM-absent for reviewer)
@@ -45,7 +44,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge, Label, Textarea, Select } from "@/components/ui/primitives";
 
-// ── Score colour map (unchanged from original) ────────────────────────────────
+// Score colour map (unchanged from original) 
 const SCORE_BAR_COLORS = {
   1: "bg-red-400",
   2: "bg-orange-400",
@@ -119,7 +118,7 @@ function StatCell({ icon: Icon, label, value }) {
   );
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
+// Main component
 
 export default function CandidateDetailPage() {
   const { id } = useParams();
@@ -127,20 +126,20 @@ export default function CandidateDetailPage() {
   const { user } = useAuth();
   const isAdmin = user?.role === "admin";
 
-  // ── Page data state ───────────────────────────────────────────────────────
+  // Page data state 
   const [candidate, setCandidate] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // ── AI summary state ──────────────────────────────────────────────────────
+  // AI summary state
   const [isSummaryLoading, setIsSummaryLoading] = useState(false);
   const [summaryError, setSummaryError] = useState("");
 
-  // ── Internal notes edit state (admin only) ────────────────────────────────
+  // Internal notes edit state (admin only)
   const [notes, setNotes] = useState("");
   const [isSavingNotes, setIsSavingNotes] = useState(false);
 
-  // ── Status edit ───────────────────────────────────────────────────────────
+  // Status edit
   const [statusValue, setStatusValue] = useState("");
   const [isSavingStatus, setIsSavingStatus] = useState(false);
 
@@ -167,7 +166,7 @@ export default function CandidateDetailPage() {
     fetchCandidate();
   }, [fetchCandidate]);
 
-  // ── Handlers (all preserved unchanged) ───────────────────────────────────
+  // Handlers (all preserved unchanged) 
 
   async function handleGenerateSummary() {
     setIsSummaryLoading(true);
@@ -212,7 +211,7 @@ export default function CandidateDetailPage() {
     }
   }
 
-  // ── Render: loading / error states ───────────────────────────────────────
+  // Render: loading / error states
 
   if (loading) {
     return (
@@ -242,7 +241,7 @@ export default function CandidateDetailPage() {
     );
   }
 
-  // ── Derived values ────────────────────────────────────────────────────────
+  // Derived values
 
   const avgScore =
     candidate.scores.length > 0
@@ -258,7 +257,7 @@ export default function CandidateDetailPage() {
     day: "numeric",
   });
 
-  // ── Main render ───────────────────────────────────────────────────────────
+  // Main render
 
   return (
     <Layout>
@@ -267,11 +266,11 @@ export default function CandidateDetailPage() {
         cards "lift" off the page. Negative margin bleeds behind Layout's padding
         — adjust -mx / -mt values to match Layout's actual padding if needed.
       */}
-      <div className="min-h-screen bg-slate-50 -mx-4 px-4 pb-12 pt-6 md:-mx-6 md:px-6">
+      <div className="min-h-screen -mx-4 px-4 pb-12 pt-6 md:-mx-6 md:px-6">
 
-        {/* ── Page header ─────────────────────────────────────────────────────
+        {/*  Page header
             Standalone — NOT inside a card. Creates clear visual hierarchy.
-        ────────────────────────────────────────────────────────────────────── */}
+         */}
         <div className="mb-6">
           {/* Back breadcrumb */}
           <Button
@@ -290,24 +289,13 @@ export default function CandidateDetailPage() {
               {candidate.name}
             </h1>
             <StatusBadge status={candidate.status} />
-            {avgScore && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700 border border-amber-200">
-                <Star size={11} className="fill-amber-400 text-amber-400" />
-                {avgScore} / 5
-              </span>
-            )}
           </div>
 
-          {/* Subheading: email · role · date */}
+          {/* Subheading: email only — role and date live in the Profile stats grid below */}
           <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <Mail size={11} />
               {candidate.email}
-            </span>
-            <span className="text-slate-300">·</span>
-            <span className="flex items-center gap-1">
-              <Briefcase size={11} />
-              {candidate.role_applied}
             </span>
             <span className="text-slate-300">·</span>
             <span className="flex items-center gap-1">
@@ -317,13 +305,13 @@ export default function CandidateDetailPage() {
           </div>
         </div>
 
-        {/* ── Asymmetric 2-column grid ─────────────────────────────────────── */}
+        {/*  Asymmetric 2-column grid  */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_340px]">
 
-          {/* ══════════════ LEFT COLUMN ══════════════ */}
+          {/*  LEFT COLUMN  */}
           <div className="space-y-4">
 
-            {/* ── Card 1: Profile details ───────────────────────────────────── */}
+            {/*  Card 1: Profile details  */}
             <Card className="border-slate-200 shadow-sm">
               <CardHeader className="border-b border-slate-100 pb-3 pt-4 px-5">
                 <CardTitle className="text-sm font-semibold text-foreground">
@@ -332,25 +320,48 @@ export default function CandidateDetailPage() {
               </CardHeader>
               <CardContent className="space-y-5 px-5 py-4">
 
-                {/* Stats grid: role | scores | added */}
-                <div className="grid grid-cols-3 gap-4 rounded-lg border border-slate-100 bg-slate-50 p-4">
+                {/* Stats grid: avg score | scores submitted | role applied | date added
+                    Role and date are the canonical source here; the header only shows email. */}
+                <div className="grid grid-cols-3 gap-x-6 gap-y-4 rounded-lg border border-slate-100 bg-slate-50 p-4">
+                  {/* Role applied */}
                   <StatCell
                     icon={Briefcase}
                     label="Role applied"
                     value={candidate.role_applied}
                   />
+
+                  {/* Date added */}
+                  {/* <StatCell
+                    icon={Calendar}
+                    label="Date added"
+                    value={formattedDate}
+                  /> */}
+
+                  {/* Avg score — coloured to match ScoreBar chip palette */}
+                  <div className="flex flex-col gap-0.5">
+                    <SectionLabel>Avg score</SectionLabel>
+                    {avgScore ? (
+                      <div className="flex items-center gap-1.5">
+                        <Star size={13} className="shrink-0 fill-amber-400 text-amber-400" />
+                        <span className="text-sm font-semibold tabular-nums text-foreground">
+                          {avgScore}
+                        </span>
+                        <span className="text-xs text-muted-foreground">/ 5</span>
+                      </div>
+                    ) : (
+                      <span className="text-sm text-muted-foreground">No scores yet</span>
+                    )}
+                  </div>
+
+                  {/* Scores submitted */}
                   <StatCell
                     icon={BarChart2}
                     label="Scores submitted"
-                    value={candidate.scores.length === 0
-                      ? "None yet"
-                      : `${candidate.scores.length} score${candidate.scores.length > 1 ? "s" : ""}`
+                    value={
+                      candidate.scores.length === 0
+                        ? "None yet"
+                        : `${candidate.scores.length} score${candidate.scores.length !== 1 ? "s" : ""}`
                     }
-                  />
-                  <StatCell
-                    icon={Calendar}
-                    label="Added"
-                    value={formattedDate}
                   />
                 </div>
 
@@ -415,11 +426,11 @@ export default function CandidateDetailPage() {
               </CardContent>
             </Card>
 
-            {/* ── Card 2: AI Summary ────────────────────────────────────────────
+            {/*  Card 2: AI Summary 
                 CRITICAL: This card is ALWAYS rendered. Every state (loading,
                 error, empty, content) has explicit UI — never a blank section.
                 Distinct violet tint signals "AI-generated" content.
-            ──────────────────────────────────────────────────────────────────── */}
+             */}
             <Card className="border-violet-200 bg-violet-50/40 shadow-sm">
               <CardHeader className="border-b border-violet-100 pb-3 pt-4 px-5">
                 <div className="flex items-center justify-between">
@@ -493,7 +504,7 @@ export default function CandidateDetailPage() {
               </CardContent>
             </Card>
 
-            {/* ── Card 3: Score History ─────────────────────────────────────── */}
+            {/*  Card 3: Score History  */}
             <Card className="border-slate-200 shadow-sm">
               <CardHeader className="border-b border-slate-100 pb-3 pt-4 px-5">
                 <div className="flex items-center justify-between">
@@ -561,13 +572,13 @@ export default function CandidateDetailPage() {
             </Card>
 
           </div>
-          {/* ══════════════ END LEFT COLUMN ══════════════ */}
+          {/*  END LEFT COLUMN  */}
 
 
-          {/* ══════════════ RIGHT COLUMN (sidebar) ══════════════ */}
+          {/*  RIGHT COLUMN (sidebar)  */}
           <div className="space-y-4">
 
-            {/* ── Card 1: Submit a score ────────────────────────────────────── */}
+            {/*  Card 1: Submit a score  */}
             <Card className="border-slate-200 shadow-sm">
               <CardHeader className="border-b border-slate-100 pb-3 pt-4 px-5">
                 <CardTitle className="flex items-center gap-2 text-sm font-semibold text-foreground">
@@ -581,11 +592,11 @@ export default function CandidateDetailPage() {
               </CardContent>
             </Card>
 
-            {/* ── Card 2: Internal Notes (admin only) ──────────────────────────
+            {/*  Card 2: Internal Notes (admin only) 
                 RBAC: this entire block is absent from the DOM for reviewer role.
                 We do NOT render it as hidden/invisible — it does not exist.
                 Amber tint visually signals "confidential / sensitive" content.
-            ──────────────────────────────────────────────────────────────────── */}
+             */}
             {isAdmin && (
               <Card className="border-amber-200 bg-amber-50/50 shadow-sm">
                 <CardHeader className="border-b border-amber-100 pb-3 pt-4 px-5">
@@ -632,7 +643,7 @@ export default function CandidateDetailPage() {
             )}
 
           </div>
-          {/* ══════════════ END RIGHT COLUMN ══════════════ */}
+          {/*  END RIGHT COLUMN  */}
 
         </div>
       </div>

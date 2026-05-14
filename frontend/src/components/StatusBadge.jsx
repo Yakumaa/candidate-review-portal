@@ -1,5 +1,4 @@
 /**
- * components/StatusBadge.jsx
  * Maps candidate status → appropriate badge color.
  */
 import { Badge } from "@/components/ui/primitives";

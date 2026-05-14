@@ -1,5 +1,4 @@
 /**
- * pages/RegistrationPage.jsx
  *
  * Public registration form. Collects ONLY email + password.
  *
@@ -28,17 +27,17 @@ import {
 export default function RegistrationPage() {
   const navigate = useNavigate();
 
-  // ── Form state ─────────────────────────────────────────────────────────────
+  //  Form state 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
-  // ── UI state ───────────────────────────────────────────────────────────────
+  //  UI state 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  // ── Submit ─────────────────────────────────────────────────────────────────
+  //  Submit 
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
@@ -73,7 +72,7 @@ export default function RegistrationPage() {
     }
   }
 
-  // ── Success state ──────────────────────────────────────────────────────────
+  //  Success state 
   if (success) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-muted/30 px-4">
@@ -89,7 +88,7 @@ export default function RegistrationPage() {
     );
   }
 
-  // ── Form ───────────────────────────────────────────────────────────────────
+  //  Form 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/30 px-4">
       <div className="w-full max-w-sm space-y-4">

@@ -1,5 +1,4 @@
 /**
- * pages/LoginPage.jsx
  * Clean, minimal login form. Redirects to / on success.
  */
 import { useState } from "react";

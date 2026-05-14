@@ -2,7 +2,7 @@ import * as React from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-// ── Badge ────────────────────────────────────────────────────────────────────
+// Badge
 const badgeVariants = cva(
   "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
@@ -25,7 +25,7 @@ function Badge({ className, variant, ...props }) {
   return <div className={cn(badgeVariants({ variant }), className)} {...props} />;
 }
 
-// ── Label ────────────────────────────────────────────────────────────────────
+// Label
 const Label = React.forwardRef(({ className, ...props }, ref) => (
   <label
     ref={ref}
@@ -35,7 +35,7 @@ const Label = React.forwardRef(({ className, ...props }, ref) => (
 ));
 Label.displayName = "Label";
 
-// ── Textarea ─────────────────────────────────────────────────────────────────
+// Textarea
 const Textarea = React.forwardRef(({ className, ...props }, ref) => (
   <textarea
     ref={ref}
@@ -48,7 +48,7 @@ const Textarea = React.forwardRef(({ className, ...props }, ref) => (
 ));
 Textarea.displayName = "Textarea";
 
-// ── Select ───────────────────────────────────────────────────────────────────
+// Select
 const Select = React.forwardRef(({ className, children, ...props }, ref) => (
   <select
     ref={ref}

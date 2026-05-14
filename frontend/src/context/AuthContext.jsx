@@ -1,6 +1,4 @@
 /**
- * context/AuthContext.jsx
- *
  * Provides { user, token, login, logout } to the entire app.
  *
  * The JWT payload is decoded client-side (no jwt-decode library needed —

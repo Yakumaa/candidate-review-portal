@@ -1,5 +1,4 @@
 /**
- * App.jsx — Router + AuthProvider root.
  *
  * Route structure:
  *   /login              → LoginPage          (public)
@@ -49,22 +48,22 @@ export default function App() {
       <BrowserRouter>
         <Routes>
 
-          {/* ── Public routes ──────────────────────────────────────────── */}
+          {/*  Public routes  */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} />
 
-          {/* ── Authenticated routes (any valid JWT) ───────────────────── */}
+          {/*  Authenticated routes (any valid JWT)  */}
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<CandidateListPage />} />
             <Route path="/candidates/:id" element={<CandidateDetailPage />} />
 
-            {/* ── Admin-only routes ─────────────────────────────────────── */}
+            {/*  Admin-only routes  */}
             <Route element={<AdminRoute />}>
               <Route path="/candidates/new" element={<NewCandidatePage />} />
             </Route>
           </Route>
 
-          {/* ── Catch-all → home ───────────────────────────────────────── */}
+          {/*  Catch-all → home  */}
           <Route path="*" element={<Navigate to="/" replace />} />
 
         </Routes>

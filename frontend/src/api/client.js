@@ -1,6 +1,4 @@
 /**
- * api/client.js
- *
  * Single axios instance with JWT injection via request interceptor.
  * All API functions are collected here — pages import from this file only.
  */
@@ -16,7 +14,7 @@ export const apiClient = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// ── Request interceptor: attach JWT from localStorage ────────────────────────
+//  Request interceptor: attach JWT from localStorage 
 apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("access_token");
   if (token) {
@@ -25,7 +23,7 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
-// ── Response interceptor: redirect to login on 401 ──────────────────────────
+//  Response interceptor: redirect to login on 401 
 apiClient.interceptors.response.use(
   (res) => res,
   (err) => {
@@ -37,7 +35,7 @@ apiClient.interceptors.response.use(
   }
 );
 
-// ── Auth ─────────────────────────────────────────────────────────────────────
+//  Auth 
 
 export const login = (email, password) =>
   apiClient.post("/auth/login", { email, password });
@@ -45,7 +43,7 @@ export const login = (email, password) =>
 export const register = (email, password) =>
   apiClient.post("/auth/register", { email, password });
 
-// ── Candidates ───────────────────────────────────────────────────────────────
+//  Candidates 
 
 /**
  * List candidates with optional filters and pagination.
@@ -66,12 +64,12 @@ export const updateCandidate = (id, data) =>
 export const deleteCandidate = (id) =>
   apiClient.delete(`/candidates/${id}`);
 
-// ── Scores ───────────────────────────────────────────────────────────────────
+//  Scores 
 
 export const submitScore = (candidateId, data) =>
   apiClient.post(`/candidates/${candidateId}/scores`, data);
 
-// ── AI Summary ───────────────────────────────────────────────────────────────
+//  AI Summary 
 
 /**
  * Trigger mock AI summary generation.
