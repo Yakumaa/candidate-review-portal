@@ -77,7 +77,7 @@ An internal full-stack tool for managing candidate assessments, reviewer scoring
 ### 1. Clone and configure
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Yakumaa/take-home-assignment.git
 cd take-home-assignment
 
 # Create your local env file from the example
