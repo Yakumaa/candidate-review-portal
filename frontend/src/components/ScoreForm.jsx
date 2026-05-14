@@ -49,11 +49,12 @@ export function ScoreForm({ candidateId, onSuccess }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Category */}
       <div className="space-y-1.5">
-        <Label htmlFor="category">Category</Label>
+        <Label htmlFor="category" className="text-sm font-medium">Category</Label>
         <Select
           id="category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          className="border-slate-200 focus-visible:ring-indigo-500/20"
         >
           {CATEGORIES.map((c) => (
             <option key={c} value={c}>{c}</option>
@@ -61,21 +62,21 @@ export function ScoreForm({ candidateId, onSuccess }) {
         </Select>
       </div>
 
-      {/* Score 1-5 */}
+      {/* Score 1-5 — Segmented Control */}
       <div className="space-y-1.5">
         <Label htmlFor="score">
           Score — <span className="font-normal text-muted-foreground">{score} / 5</span>
         </Label>
-        <div className="flex gap-2">
+        <div className="inline-flex gap-1 rounded-full bg-slate-100 p-1">
           {[1, 2, 3, 4, 5].map((n) => (
             <button
               key={n}
               type="button"
               onClick={() => setScore(String(n))}
-              className={`h-9 w-9 rounded-md border text-sm font-medium transition-colors ${
+              className={`h-8 w-8 rounded-md text-sm font-semibold transition-all ${
                 String(n) === score
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-input bg-background hover:bg-accent"
+                  ? "bg-white text-slate-900 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               {n}
@@ -86,13 +87,14 @@ export function ScoreForm({ candidateId, onSuccess }) {
 
       {/* Note */}
       <div className="space-y-1.5">
-        <Label htmlFor="note">Note <span className="text-muted-foreground font-normal">(optional)</span></Label>
+        <Label htmlFor="note" className="text-sm font-medium">Note <span className="text-muted-foreground font-normal">(optional)</span></Label>
         <Textarea
           id="note"
           placeholder="Add context for this score…"
           value={note}
           onChange={(e) => setNote(e.target.value)}
           rows={3}
+          className="border-slate-200 focus-visible:ring-indigo-500/20 resize-none"
         />
       </div>
 
