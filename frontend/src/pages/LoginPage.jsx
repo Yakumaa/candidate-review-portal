@@ -2,13 +2,14 @@
  * Clean, minimal login form. Redirects to / on success.
  */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/primitives";
 import { Spinner } from "@/components/StatusBadge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import techKraftLogo from "@/assets/TechKraft.png";
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -40,9 +41,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm space-y-4">
         {/* Wordmark */}
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            TechKraft Inc.
-          </p>
+          <img src={techKraftLogo} alt="TechKraft" className="mx-auto h-12 w-auto" />
           <h1 className="mt-1 text-xl font-semibold">Recruitment Dashboard</h1>
         </div>
 
@@ -96,9 +95,17 @@ export default function LoginPage() {
           </CardContent>
         </Card>
 
-        <p className="text-center text-xs text-muted-foreground">
-          New accounts are assigned the reviewer role. Contact an admin for elevated access.
-        </p>
+        {/* Toggle to login */}
+          <p className="text-center text-xs text-muted-foreground">
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="font-medium text-foreground underline-offset-4 hover:underline"
+            >
+              Sign up
+            </Link>
+          </p>
+
       </div>
     </div>
   );
