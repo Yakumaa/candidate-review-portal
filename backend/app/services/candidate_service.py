@@ -93,6 +93,7 @@ def list_candidates(
                 Candidate.name.ilike(kw),
                 Candidate.email.ilike(kw),
                 Candidate.role_applied.ilike(kw),
+                Candidate.skills.ilike(kw),  
             )
         )
 

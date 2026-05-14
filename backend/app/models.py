@@ -108,6 +108,7 @@ class Candidate(Base):
         Index("ix_candidates_role_applied", "role_applied"),
         # Partial-style covering index for "active" candidates (deleted_at IS NULL)
         Index("ix_candidates_active", "deleted_at", "status"),
+        Index("ix_candidates_skills", "skills"),
     )
 
 # Score

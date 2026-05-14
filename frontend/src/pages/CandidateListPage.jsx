@@ -46,7 +46,6 @@ export default function CandidateListPage() {
   const [filters, setFilters] = useState({
     status: "",
     role_applied: "",
-    skill: "",
     keyword: "",
   });
   const [debouncedKeyword, setDebouncedKeyword] = useState("");
@@ -83,7 +82,6 @@ export default function CandidateListPage() {
         page_size: PAGE_SIZE,
         ...(filters.status && { status: filters.status }),
         ...(filters.role_applied && { role_applied: filters.role_applied }),
-        ...(filters.skill && { skill: filters.skill }),
         ...(debouncedKeyword && { keyword: debouncedKeyword }),
       };
       const res = await listCandidates(params);
@@ -93,7 +91,7 @@ export default function CandidateListPage() {
     } finally {
       setLoading(false);
     }
-  }, [page, filters.status, filters.role_applied, filters.skill, debouncedKeyword]);
+  }, [page, filters.status, filters.role_applied, debouncedKeyword]);
 
   useEffect(() => {
     fetchCandidates();
@@ -119,12 +117,12 @@ export default function CandidateListPage() {
       </div>
 
       {/*  Filter bar — refined with consistent styling  */}
-      <div className="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
         {/* Keyword search */}
         <div className="relative sm:col-span-2">
           <Search size={14} className="absolute left-3 top-3 text-muted-foreground" />
           <Input
-            placeholder="Search name, email, role…"
+            placeholder="Search name, email, role, skills…"
             className="pl-9 border-slate-200 focus-visible:ring-indigo-500/20"
             value={filters.keyword}
             onChange={(e) => handleFilterChange("keyword", e.target.value)}
@@ -144,12 +142,12 @@ export default function CandidateListPage() {
         </Select>
 
         {/* Skill filter */}
-        <Input
+        {/* <Input
           placeholder="Filter by skill…"
           className="border-slate-200 focus-visible:ring-indigo-500/20"
           value={filters.skill}
           onChange={(e) => handleFilterChange("skill", e.target.value)}
-        />
+        /> */}
       </div>
 
       {/*  Table — premium design with refined hover states  */}
