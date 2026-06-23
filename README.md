@@ -1,4 +1,4 @@
-# TechKraft Recruitment Dashboard
+# Candidate Review Portal
 
 An internal full-stack tool for managing candidate assessments, reviewer scoring, and AI-assisted candidate review. Built with **FastAPI**, **SQLite**, and **React + Vite**.
 
@@ -77,8 +77,8 @@ An internal full-stack tool for managing candidate assessments, reviewer scoring
 ### 1. Clone and configure
 
 ```bash
-git clone https://github.com/Yakumaa/take-home-assignment.git
-cd take-home-assignment
+git clone https://github.com/Yakumaa/candidate-review-portal.git
+cd candidate-review-portal
 
 # Create your local env file from the example
 cp .env.example .env
@@ -118,9 +118,9 @@ from app.models import User
 
 create_tables()
 db = SessionLocal()
-if not db.query(User).filter(User.email == "admin@techkraft.com").first():
+if not db.query(User).filter(User.email == "admin@candidate.com").first():
     db.add(User(
-        email="admin@techkraft.com",
+        email="admin@candidate.com",
         hashed_password=get_password_hash("admin1234"),
         role="admin"
     ))
@@ -133,9 +133,9 @@ EOF
 ``` -->
 
 ```bash
-docker compose exec backend python -c "from app.models import SessionLocal, User, create_tables; from app.auth import get_password_hash; create_tables(); db = SessionLocal(); existing = db.query(User).filter(User.email == 'admin@techkraft.com').first(); 
+docker compose exec backend python -c "from app.models import SessionLocal, User, create_tables; from app.auth import get_password_hash; create_tables(); db = SessionLocal(); existing = db.query(User).filter(User.email == 'admin@candidate.com').first(); 
 if not existing: 
-    admin = User(email='admin@techkraft.com', hashed_password=get_password_hash('admin1234'), role='admin'); db.add(admin); db.commit(); print('Admin created.') 
+    admin = User(email='admin@candidate.com', hashed_password=get_password_hash('admin1234'), role='admin'); db.add(admin); db.commit(); print('Admin created.') 
 else: 
     print('Admin already exists.'); db.close()"
 ```
@@ -145,7 +145,7 @@ else:
 Navigate to **http://localhost:5173**
 
 - Register a reviewer account at `/register`
-- Sign in as admin at `/login` with `admin@techkraft.com` / `admin1234`
+- Sign in as admin at `/login` with `admin@candidate.com` / `admin1234`
 
 ### Stopping
 
@@ -216,17 +216,17 @@ BASE="http://localhost:8000"
 # Get an admin token
 ADMIN_TOKEN=$(curl -s -X POST "$BASE/auth/login" \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@techkraft.com","password":"admin1234"}' \
+  -d '{"email":"admin@candidate.com","password":"admin1234"}' \
   | python3 -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
  
 # Get a reviewer token (register first if needed)
 curl -s -X POST "$BASE/auth/register" \
   -H "Content-Type: application/json" \
-  -d '{"email":"reviewer@techkraft.com","password":"reviewer1234"}'
+  -d '{"email":"reviewer@candidate.com","password":"reviewer1234"}'
  
 REVIEWER_TOKEN=$(curl -s -X POST "$BASE/auth/login" \
   -H "Content-Type: application/json" \
-  -d '{"email":"reviewer@techkraft.com","password":"reviewer1234"}' \
+  -d '{"email":"reviewer@candidate.com","password":"reviewer1234"}' \
   | python3 -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
 ```
  
