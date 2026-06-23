@@ -196,7 +196,7 @@ tests/test_api.py::test_unauthenticated_request_returns_403         PASSED
 
 ### A full Postman collection covering all endpoints is included in the repository:
 
-```/postman/TechKraft_Take-home_Assignment_postman_collection.json```
+```/postman/Candidate_Review_Portal_postman_collection.json```
 
 Import it into Postman and set the following collection variables:
 

@@ -118,7 +118,7 @@ export default function RegistrationPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@techkraft.com"
+                  placeholder="you@candidate.com"
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

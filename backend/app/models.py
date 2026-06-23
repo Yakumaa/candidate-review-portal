@@ -29,7 +29,7 @@ from sqlalchemy.orm import DeclarativeBase, relationship, sessionmaker
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./data/techkraft.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./data/candidate.db")
 
 # connect_args is SQLite-specific: allows the same connection across threads
 # (needed because FastAPI runs sync routes in a threadpool)

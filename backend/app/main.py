@@ -20,7 +20,7 @@ from app.routers import candidates as candidates_router
 # App factory
 
 # app = FastAPI(
-#     title="TechKraft Recruitment Dashboard API",
+#     title="Candidate Recruitment Dashboard API",
 #     description=(
 #         "Internal tool for managing candidate assessments, scoring, "
 #         "and AI-assisted review. Role-based access: reviewer | admin."
@@ -40,7 +40,7 @@ async def lifespan(app: FastAPI):
     # shutdown logic (optional)
 
 app = FastAPI(
-    title="TechKraft Recruitment Dashboard API",
+    title="Candidate Recruitment Dashboard API",
     description=(
         "Internal tool for managing candidate assessments, scoring, "
         "and AI-assisted review. Role-based access: reviewer | admin."

@@ -3,7 +3,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: techkraft_backend
+    container_name: candidate_backend
     ports:
       - "8000:8000"
     volumes:
@@ -14,14 +14,14 @@ services:
     env_file:
       - .env
     environment:
-      - DATABASE_URL=sqlite:///./data/techkraft.db
+      - DATABASE_URL=sqlite:///./data/candidate.db
     restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: techkraft_frontend
+    container_name: candidate_frontend
     ports:
       - "5173:5173"
     volumes:
