@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/primitives";
 import { Spinner } from "@/components/StatusBadge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import techKraftLogo from "@/assets/TechKraft.png";
+import candidateReviewLogo from "@/assets/candidate_review.png";
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -41,7 +41,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm space-y-4">
         {/* Wordmark */}
         <div className="text-center">
-          <img src={techKraftLogo} alt="TechKraft" className="mx-auto h-12 w-auto" />
+          <img src={candidateReviewLogo} alt="CandidateReview" className="mx-auto h-12 w-auto" />
           <h1 className="mt-1 text-xl font-semibold">Recruitment Dashboard</h1>
         </div>
 

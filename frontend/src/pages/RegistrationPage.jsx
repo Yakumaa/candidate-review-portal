@@ -23,7 +23,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import techKraftLogo from "@/assets/TechKraft.png";
+import candidateReviewLogo from "@/assets/candidate_review.png";
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
@@ -96,7 +96,7 @@ export default function RegistrationPage() {
 
         {/* Wordmark — matches LoginPage */}
         <div className="text-center">
-          <img src={techKraftLogo} alt="TechKraft" className="mx-auto h-12 w-auto" />
+          <img src={candidateReviewLogo} alt="CandidateReview" className="mx-auto h-12 w-auto" />
           <h1 className="mt-1 text-xl font-semibold">Recruitment Dashboard</h1>
         </div>
 

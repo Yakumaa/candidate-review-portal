@@ -6,7 +6,7 @@ import { LogOut, Users } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/primitives";
-import techKraftLogo from "@/assets/TechKraft.png";
+import candidateReviewLogo from "@/assets/candidate_review.png";
 
 export function Layout({ children }) {
   const { user, logout } = useAuth();
@@ -23,8 +23,8 @@ export function Layout({ children }) {
       <header className="sticky top-0 z-10 border-b bg-background">
         <div className="mx-auto flex h-12 max-w-7xl items-center justify-between px-4 sm:px-6">
           <Link to="/" className="flex items-center gap-2 text-sm font-semibold text-foreground">
-            <img src={techKraftLogo} alt="TechKraft" className="h-5 w-auto" />
-            {/* TechKraft Recruitment */}
+            <img src={candidateReviewLogo} alt="CandidateReview" className="h-5 w-auto" />
+            {/* CandidateReview Recruitment */}
           </Link>
 
           <div className="flex items-center gap-3">
